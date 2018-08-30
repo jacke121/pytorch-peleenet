@@ -187,14 +187,18 @@ class PeleeNet(nn.Module):
 
 
 if __name__ == '__main__':
-    p = PeleeNet(num_classes=1000)
-    input = torch.autograd.Variable(torch.ones(1, 3, 224, 224))
-    output = p(input)
+    model = PeleeNet(num_classes=2)
 
-    print(output.size())
-
-    # torch.save(p.state_dict(), 'peleenet.pth.tar')
-
+    for i in range(101):
+        t1 = time.time()
+        x = torch.rand(1,3, 416, 416)
+        out3 = model(x)
+        # print(out3)
+        if i != 0:
+            cnt = time.time() - t1
+            print(cnt)
+            
+            #280ms
 
 
 
